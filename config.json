@@ -1,0 +1,23 @@
+{
+  "campaign": "mvp",
+  "stream": {
+    "service": "twitch",
+    "channelName": "ajpotato214"
+  },
+  "adRoll": {
+    "settings": {
+      "durationPerAd": 5000
+    },
+    "images": [
+      {
+        "filename": "10-0-Merch.jpg"
+      },
+      {
+        "filename": "10-0-IronNerd.png"
+      },
+      {
+        "filename": "10-0-Podcast.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+service: max-mille-backend
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-webpack
+  - serverless-plugin-scripts
+
+custom:
+  webpack:
+    includeModules:
+      forceExclude:
+        - aws-sdk
+  scripts:
+    hooks:
+      'deploy:finalize': sls invoke -f setTwitchClientToken
+
+provider:
+  name: aws
+  stage: ${env:STAGE}
+  region: us-west-2
+  runtime: nodejs12.x
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 'dynamodb:DescribeTable'
+        - 'dynamodb:Query'
+        - 'dynamodb:Scan'
+        - 'dynamodb:GetItem'
+        - 'dynamodb:PutItem'
+        - 'dynamodb:UpdateItem'
+        - 'dynamodb:DeleteItem'
+      Resource: 'arn:aws:dynamodb:*'
+    - Effect: 'Allow'
+      Action:
+        - 'secretsmanager:CreateSecret'
+        - 'secretsmanager:GetSecretValue'
+        - 'secretsmanager:PutSecretValue'
+      Resource: 'arn:aws:secretsmanager:*'
+
+resources:
+  Resources:
+    MaxMilleUsers:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: MaxMille-twitch-ajpotato214
+        AttributeDefinitions:
+          - AttributeName: StartedAt
+            AttributeType: S
+          - AttributeName: Timestamp
+            AttributeType: N
+        KeySchema:
+          - AttributeName: StartedAt
+            KeyType: HASH
+          - AttributeName: Timestamp
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+functions:
+  recordStatus:
+    handler: backend/src/handler.recordStatus
+    events:
+      - http:
+          method: post
+          path: status
+  setTwitchClientToken:
+    handler: backend/src/auth.setTwitchClientToken
+  renewTwitchClientToken:
+    handler: backend/src/auth.renewTwitchClientToken
+    events:
+      - schedule: rate(45 days)
