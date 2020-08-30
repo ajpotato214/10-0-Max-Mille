@@ -55,7 +55,7 @@ Example `config.json` file:
   },
   "adRoll": {
     "settings": {
-      "durationPerAd": 5000 // ads will rotate every 5000 milliseconds or 5 seconds
+      "durationPerAd": 5000
     },
     "images": [
       {
