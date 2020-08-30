@@ -3,6 +3,7 @@
 # Table of Contents
 
 1. [Configuration](#configuration)
+   1. [Changing Advertisements](#changing-advertisements)
 2. [Getting Started](#getting-started)
 3. [Adding to OBS or XSplit](#adding-to-obs-or-xsplit)
    1. [Open Broadcaster Software (OBS)](#open-broadcaster-software-obs)
@@ -33,6 +34,42 @@ TWITCH_CLIENT_SECRET=12345abcdefghijklmop
 
 MAX_MILLE_API_URL=https://abcd1234.execute-api.us-west-1.amazonaws.com/prod/
 MAX_MILLE_STATUS_INTERVAL=60000
+```
+
+### Changing Advertisements
+
+To swap out the default example advertisement images, edit the `config.json` file located in the project's root directory as well as place the new images into the `streamSource/src/components/img/` directory. Afterwards build the stream source:
+
+```
+$ npm run build
+```
+
+Example `config.json` file:
+
+```json
+{
+  "campaign": "Energy Drink Shill",
+  "stream": {
+    "service": "twitch",
+    "channelName": "ajpotato214"
+  },
+  "adRoll": {
+    "settings": {
+      "durationPerAd": 5000 // ads will rotate every 5000 milliseconds or 5 seconds
+    },
+    "images": [
+      {
+        "filename": "myNewAd0.jpg"
+      },
+      {
+        "filename": "myNewAd1.png"
+      },
+      {
+        "filename": "myNewAd2.png"
+      }
+    ]
+  }
+}
 ```
 
 ## Getting Started
