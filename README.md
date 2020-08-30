@@ -6,7 +6,7 @@
 
 10/0 Max Mille is a Browser / Webpage source for Open Broadcaster Software (OBS) and XSplit that displays rotating advertisements during a live stream. It communicates with an Amazon Web Services (AWS) backend to record statistics while the advertisements are live in the active scene.
 
-📚 [Documentation](./docs/README.md) 📋 Trello Board (Coming soon)
+📚 [Documentation](./docs/README.md) 📋 [Trello Board](https://trello.com/b/qlliC8iM/10-0-max-mile)
 
 ## Features
 
@@ -17,6 +17,6 @@
 
 ## Motivation
 
-This project was developed in collaboration with 10/0 Media as a way to automatically gather data around the usage of embeded stream advertisements and to communicate to clients the potential and success of ad campaigns.
+This project was developed in collaboration with [10/0 Media](http://ten-o.gg/) as a way to automatically gather data around the usage of embedded stream advertisements and to communicate to clients the potential and success of ad campaigns.
 
 From a personal standpoint, this project was a way for me to brush up on my JavaScript and React as well as a way for me to learn and gain hands-on experience using the Serverless Framework.
